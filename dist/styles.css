@@ -1,0 +1,19 @@
+body {
+  background: url("https://media.giphy.com/media/Fzt6LL05lletW/giphy.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+form {
+  background: rgba(102, 51, 153, 0.5);
+  margin: 0 auto;
+  width: 50%;
+  height: 500px;
+}
+form label {
+  background: #fff;
+  margin: 0 auto;
+}
+form input {
+  margin: 0 auto;
+}
