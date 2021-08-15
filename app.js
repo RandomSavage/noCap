@@ -3,10 +3,11 @@ console.log("Connected")
 
 class noCap {
   constructor(score) {
-    noCap.score = score
-    noCap.clues = []
-    noCap.gameStart = function() {
+    this.score = score
+    noCap.clues = ['hello']
     
+    this.gameStart = function(){
+     console.log(`gameStart: ${noCap.clues}`)
       let ranCat = Math.floor(Math.random() * 10)
       let myCat = {
         0: {id: 218, category: 'Science & Nature'},
@@ -24,8 +25,8 @@ class noCap {
 
       // return(
         fetch(`https://jservice.io/api/clues?category=${myCat[ranCat].id}`)
-        .then(response => response.json())
-        .then(data => {
+        .then(function(response) {response.json()})
+        .then(function(data) {
           noCap.clues.push(data)
           let gameScreen = document.createElement('form')
       
@@ -58,12 +59,12 @@ class noCap {
               answerBox.innerText = answer
               gameScreen.append(answerBox)
               let scoreBox = document.createElement('p')
-              noCap.score += 1
-              scoreBox.innerText = noCap.score
+              this.score += 1
+              scoreBox.innerText = this.score
               gameScreen.append(scoreBox)
               setTimeout(function() {
                 gameScreen.remove()
-                noCap.gameStart()
+                this.gameStart()
               }, 2000)
             }else {
               gameScreen.append(userInput)
@@ -77,12 +78,12 @@ class noCap {
               gameScreen.append(answerBox)
       
               let scoreBox = document.createElement('p')
-              scoreBox.innerText = noCap.score
+              scoreBox.innerText = this.score
               gameScreen.append(scoreBox)
       
-              setTimeout(function() {
+              setTimeout(() => {
                 gameScreen.remove()
-                noCap.gameStart()
+                this.gameStart()
               }, 2000)
             }
       
@@ -107,16 +108,25 @@ class noCap {
           // console.log(data)
         })
       }
-  }
-  get gameStart() {
-    return this.constructor.gameStart
-  }
-  get score() {
-    return this.constructor.score
-  }
-  get clues() {
-    return this.constructor.clues
-  }
+    }
+  // get gameStart() {
+  //   return this.constructor.gameStart
+  // }
+  // get score() {
+  //   return this.constructor.score
+  // }
+  // get clues() {
+  //   return this.constructor.clues
+  // }
+  // set gameStart(gameStart) {
+  //   return this.constructor.gameStart
+  // }
+  // set score(score) {
+  //   return this.constructor.score
+  // }
+  // set clues(clues) {
+  //   return this.constructor.clues
+  // }
 }
 
 let newGame = new noCap(100)
@@ -127,7 +137,12 @@ document.body.append(startBtn)
 console.log(newGame.clues)
 let x = newGame.score
 console.log(x)
-console.log(`Window ${document.x}`)
 // fetch("https://jservice.io/api/clues?category=267")
 //   .then(response => response.json())
 //   .then(data => console.log(data))
+const atachThis = function() {
+  console.log(`whaaaa: ${this.clues}`) 
+}
+const displayValue = atachThis.bind(newGame)
+displayValue()
+// newGame.gameStart.bind(noCap)
