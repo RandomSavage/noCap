@@ -124,7 +124,7 @@ let startBtn = document.createElement('button')
 startBtn.innerText = 'Start Game'
 startBtn.addEventListener('click', newGame.gameStart)
 document.body.append(startBtn)
-console.log(newGame.clues)
+console.log(`clues here: ${newGame.clues}`)
 let x = newGame.score
 console.log(x)
 // fetch("https://jservice.io/api/clues?category=267")
